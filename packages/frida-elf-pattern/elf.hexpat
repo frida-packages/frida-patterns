@@ -2502,7 +2502,12 @@ fn dataOffsetOf(u64 imageStart, u64 fileOffset) {
 };
 
 fn dataOffsetOfAddress(u64 imageStart, u64 address) {
-    return imageStart + (address - loadBaseAddress(imageStart));
+    u64 loadedAt = std::mem::base_address() + imageStart;
+    u64 linkedAt = loadBaseAddress(imageStart);
+    if (loadedAt != linkedAt && address >= loadedAt) {
+        return address - std::mem::base_address();
+    }
+    return imageStart + (address - linkedAt);
 };
 
 fn fileOffsetIsMapped(u64 imageStart, u64 fileOffset) {
