@@ -1,6 +1,6 @@
 {
   "name": "frida-elf-pattern",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ELF pattern for Frida",
   "main": "elf.hexpat",
   "files": [
